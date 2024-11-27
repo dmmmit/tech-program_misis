@@ -7,11 +7,9 @@ struct Edge {
 };
 
 bool bellmanFord(int V, int E, std::vector<Edge>& edges, int source) {
-    // Шаг 1: Инициализация
     std::vector<int> distance(V, INT_MAX);  // Массив для хранения расстояний
     distance[source] = 0;  // Расстояние от источника до самого себя равно 0
 
-    // Шаг 2: Основной цикл алгоритма
     for (int i = 1; i < V; i++) {
         // Пройдем по всем рёбрам графа
         for (int j = 0; j < E; j++) {
@@ -26,7 +24,6 @@ bool bellmanFord(int V, int E, std::vector<Edge>& edges, int source) {
         }
     }
 
-    // Шаг 3: Проверка на наличие отрицательных циклов
     for (int i = 0; i < E; i++) {
         int u = edges[i].u;
         int v = edges[i].v;
@@ -37,7 +34,6 @@ bool bellmanFord(int V, int E, std::vector<Edge>& edges, int source) {
         }
     }
 
-    // Шаг 4: Вывод результатов
     std::cout << "Кратчайшие расстояния от вершины " << source << " до остальных вершин:" << std::endl;
     for (int i = 0; i < V; i++) {
         if (distance[i] == INT_MAX) {
@@ -64,7 +60,6 @@ int main() {
     std::cout << "Введите индекс источника: ";
     std::cin >> source;
 
-    // Вызов алгоритма Беллмана-Форда
     bellmanFord(V, E, edges, source);
 
     return 0;
